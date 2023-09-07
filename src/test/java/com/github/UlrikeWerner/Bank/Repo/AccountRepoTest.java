@@ -1,7 +1,6 @@
-package com.github.UlrikeWerner.Service;
+package com.github.UlrikeWerner.Bank.Repo;
 
 import com.github.UlrikeWerner.Bank.Entities.Client;
-import com.github.UlrikeWerner.Bank.Repo.AccountRepo;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +14,7 @@ public class AccountRepoTest {
     public void setUp() {
         UUID testAccountId = UUID.randomUUID();
         Client testAccountClient = new Client(UUID.randomUUID(), "Hans", "Glück");
-        mockAccountRepo = new AccountRepo(testAccountId, new BigDecimal(0), testAccountClient);
+        mockAccountRepo = new AccountRepo(testAccountId, testAccountClient);
     }
     @Test
     void saldoShouldBe5AfterDeposit5(){
