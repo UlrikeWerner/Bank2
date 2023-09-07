@@ -27,6 +27,15 @@ public class AccountRepoTest {
     }
 
     @Test
+    void saldoShouldBe5Point7AfterDeposit5Point7(){
+
+        Assertions.assertEquals(new BigDecimal(0), mockAccountRepo.getSaldo());
+
+        mockAccountRepo.deposit(new BigDecimal("5.7"));
+        Assertions.assertEquals(new BigDecimal("5.7"), mockAccountRepo.getSaldo());
+    }
+
+    @Test
     void withdraw2BySaldo5ShouldNewSaldoBeeing3(){
         mockAccountRepo.deposit(new BigDecimal(5));
         mockAccountRepo.withdraw(new BigDecimal(2));
