@@ -1,13 +1,22 @@
-package com.github.UlrikeWerner.Bank.Entities;
+package com.github.UlrikeWerner.Bank.Repo;
+
+import com.github.UlrikeWerner.Bank.Entities.Client;
 
 import java.math.BigDecimal;
 import java.util.Objects;
 import java.util.UUID;
 
-public class Account {
+public class AccountRepo {
     private UUID accoutId;
-    private BigDecimal saldo;
+    private BigDecimal saldo = BigDecimal.ZERO;
     private Client owner;
+
+    public AccountRepo() {}
+    public AccountRepo(UUID id, BigDecimal saldo, Client owner) {
+        accoutId = id;
+        this.saldo = saldo;
+        this.owner = owner;
+    }
 
     public UUID getAccoutId() {
         return accoutId;
@@ -33,12 +42,20 @@ public class Account {
         this.owner = owner;
     }
 
+    public void deposit(BigDecimal amount) {
+        saldo = saldo.add(amount);
+    }
+
+    public void withdraw(BigDecimal amount) {
+        saldo = saldo.subtract(amount);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Account account = (Account) o;
-        return Objects.equals(accoutId, account.accoutId) && Objects.equals(saldo, account.saldo) && Objects.equals(owner, account.owner);
+        AccountRepo accountRepo = (AccountRepo) o;
+        return Objects.equals(accoutId, accountRepo.accoutId) && Objects.equals(saldo, accountRepo.saldo) && Objects.equals(owner, accountRepo.owner);
     }
 
     @Override
@@ -54,4 +71,5 @@ public class Account {
                 ", owner=" + owner +
                 '}';
     }
+
 }
