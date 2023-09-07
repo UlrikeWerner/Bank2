@@ -7,23 +7,23 @@ import java.util.Objects;
 import java.util.UUID;
 
 public class AccountRepo {
-    private UUID accoutId;
+    private final UUID accoutId;
     private BigDecimal saldo = BigDecimal.ZERO;
     private Client owner;
 
-    public AccountRepo() {}
-    public AccountRepo(UUID id, BigDecimal saldo, Client owner) {
+    public AccountRepo(UUID id, Client owner) {
         accoutId = id;
-        this.saldo = saldo;
         this.owner = owner;
+    }
+
+    public AccountRepo(UUID id, Client owner, BigDecimal saldo) {
+        accoutId = id;
+        this.owner = owner;
+        this.saldo = saldo;
     }
 
     public UUID getAccoutId() {
         return accoutId;
-    }
-
-    public void setAccoutId(UUID accoutId) {
-        this.accoutId = accoutId;
     }
 
     public BigDecimal getSaldo() {
